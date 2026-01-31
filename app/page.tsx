@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { CheckCircle, FileText, Download, Heart, Clock, DollarSign } from 'lucide-react'
 
 export default function Home() {
@@ -8,7 +9,6 @@ export default function Home() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // TODO: Connect to email service
     alert(`Thanks for your interest! We'll contact ${email} soon.`)
     setEmail('')
   }
@@ -26,9 +26,11 @@ export default function Home() {
             <div className="flex gap-4">
               <a href="#features" className="text-gray-600 hover:text-gray-900">Features</a>
               <a href="#pricing" className="text-gray-600 hover:text-gray-900">Pricing</a>
-              <button className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700">
-                Sign In
-              </button>
+              <Link href="/auth/login">
+                <button className="bg-primary-600 text-white px-4 py-2 rounded-lg hover:bg-primary-700">
+                  Sign In
+                </button>
+              </Link>
             </div>
           </div>
         </nav>
@@ -45,22 +47,18 @@ export default function Home() {
               Our guided checklist helps you organize every detail of a funeral or memorial service, 
               so you can focus on what matters most—honoring your loved one.
             </p>
-            <form onSubmit={handleSubmit} className="flex gap-3 max-w-md mx-auto">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-                required
-              />
-              <button 
-                type="submit"
-                className="bg-primary-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-primary-700 transition"
-              >
-                Get Started Free
-              </button>
-            </form>
+            <div className="flex gap-4 justify-center">
+              <Link href="/auth/signup">
+                <button className="bg-primary-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-700 transition">
+                  Get Started Free
+                </button>
+              </Link>
+              <Link href="/auth/login">
+                <button className="bg-white text-primary-600 border-2 border-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-primary-50 transition">
+                  Sign In
+                </button>
+              </Link>
+            </div>
             <p className="text-sm text-gray-500 mt-3">No credit card required. Get access instantly.</p>
           </div>
         </div>
@@ -183,9 +181,11 @@ export default function Home() {
                   <span className="text-gray-600">PDF export (with watermark)</span>
                 </li>
               </ul>
-              <button className="w-full border-2 border-primary-600 text-primary-600 py-3 rounded-lg font-semibold hover:bg-primary-50 transition">
-                Get Started
-              </button>
+              <Link href="/auth/signup">
+                <button className="w-full border-2 border-primary-600 text-primary-600 py-3 rounded-lg font-semibold hover:bg-primary-50 transition">
+                  Get Started
+                </button>
+              </Link>
             </div>
 
             {/* Premium Plan */}
@@ -219,9 +219,11 @@ export default function Home() {
                   <span className="text-gray-600">Priority email support</span>
                 </li>
               </ul>
-              <button className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition">
-                Start Free Trial
-              </button>
+              <Link href="/auth/signup">
+                <button className="w-full bg-primary-600 text-white py-3 rounded-lg font-semibold hover:bg-primary-700 transition">
+                  Start Free Trial
+                </button>
+              </Link>
             </div>
 
             {/* Business Plan */}
@@ -269,13 +271,15 @@ export default function Home() {
           <p className="text-xl text-primary-100 mb-8">
             Join thousands who've used our platform to create meaningful, organized farewells
           </p>
-          <button className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition">
-            Create Your Free Checklist
-          </button>
+          <Link href="/auth/signup">
+            <button className="bg-white text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition">
+              Create Your Free Checklist
+            </button>
+          </Link>
         </div>
       </section>
 
-      {/* Footer */}
+            {/* Footer */}
       <footer className="bg-gray-900 text-gray-300 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-4 gap-8">
